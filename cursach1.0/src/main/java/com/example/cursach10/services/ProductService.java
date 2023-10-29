@@ -1,29 +1,34 @@
 package com.example.cursach10.services;
 
+import com.example.cursach10.repositories.ProductRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import com.example.cursach10.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ProductService {
+    private final ProductRepository productRepository;
 
-    public List<Product> listProduct(){return products;}
+    public List<Product> listProduct(String name){
+        if(name != null) return productRepository.findByName(name);
+        return productRepository.findAll();
+    }
 
     public void saveProduct(Product product){
-        product.setId(++ID);
-        products.add(product);
+        log.info("Saving new {}", product);
+        productRepository.save(product);
     }
 
     public void deleteProduct(Long id){
-
-        products.removeIf(product1 -> product1.getId().equals(id));
+    productRepository.deleteById(id);
     }
 
     public Product getProductById(Long id){
-        for(Product product1: products) {
-            if (product1.getId().equals(id)) return product1;
-        }
-        return null;
+      return productRepository.findById(id).orElse(null);
     }
 }
