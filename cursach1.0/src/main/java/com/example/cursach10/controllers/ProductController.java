@@ -22,6 +22,11 @@ public class ProductController {
         return "products";
     }
 
+    @GetMapping("/product/allProducts")
+    public String productList(@RequestParam(name = "name", required = false)String name, Model model) {
+        model.addAttribute("products", productService.listProduct(name));
+        return "allProducts";
+    }
     @GetMapping("/product/{id}")
     public String productInfo(@PathVariable Long id, Model model) {
         Product product = productService.getProductById(id);
@@ -33,13 +38,13 @@ public class ProductController {
     @PostMapping("/product/create")
     public String createProduct(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
                                 @RequestParam("file3") MultipartFile file3,Product product) throws IOException {
-       productService.saveProduct(product, file1, file2, file3);
+        productService.saveProduct(product, file1, file2, file3);
         return "redirect:/";
     }
 
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
-      productService.deleteProduct(id);
+        productService.deleteProduct(id);
         return "redirect:/";
     }
 }

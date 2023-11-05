@@ -1,9 +1,11 @@
 package com.example.cursach10.models;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
@@ -33,6 +35,7 @@ public class Image {
     private boolean isPreviewImage;
 
     @Lob
+    @Column(name = "bytes", columnDefinition = "longblob")
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)

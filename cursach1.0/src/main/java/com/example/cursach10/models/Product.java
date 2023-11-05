@@ -1,11 +1,11 @@
 package com.example.cursach10.models;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +52,12 @@ public class Product {
     private String AgeRestriction;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
-    mappedBy = "product")
+            mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
-   @PrePersist
-   public void init(){
+    @PrePersist
+    public void init(){
         dateOfCreated = LocalDateTime.now();
     }
 
