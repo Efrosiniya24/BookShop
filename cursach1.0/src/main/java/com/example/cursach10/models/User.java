@@ -9,15 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +35,7 @@ public class User implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image avatar;
+
     @Column(name = "password", length = 1000)
     private String password;
 
@@ -47,6 +44,8 @@ public class User implements UserDetails {
     joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated (EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Product> products = new ArrayList<>();
     private LocalDateTime dateOfCreated;
 
     @PrePersist

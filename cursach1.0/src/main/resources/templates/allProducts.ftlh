@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html  lang="ru">
 <head>
-    <header>
-        <div>
-            <nav>
-                <ul>
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/about">О нас</a></li>
-                    <li><a href="/contacts">Контакты</a></li>
-                    <li><a href="/product/allProducts">Все товары</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="icons8-дерево-64.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/style.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -23,7 +14,22 @@
 
     <title>BOOK SHOP</title>
 </head>
+
 <body>
+
+<header>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+                <li><a href="/product/allProducts">Все товары</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
 <h1>BOOK SHOP</h1><hr>
 <h4>Все товары</h4>
 <form action="/" method="get">
@@ -39,9 +45,6 @@
 <#else>
     <h3>Товаров нет</h3>
 </#list>
-
-<
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -51,6 +54,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
             crossorigin="anonymous"></script>
-
+</main>
+<footer></footer>
 </body>
 </html>
