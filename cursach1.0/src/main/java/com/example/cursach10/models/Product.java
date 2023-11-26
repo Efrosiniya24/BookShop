@@ -14,6 +14,8 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,9 +61,9 @@ public class Product {
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
 
+//    @PrePersist
+//    private void onCreate() { dateOfCreated = LocalDateTime.now(); }
     @PrePersist
-    private void onCreate() { dateOfCreated = LocalDateTime.now(); }
-
     public void init(){
         dateOfCreated = LocalDateTime.now();
     }

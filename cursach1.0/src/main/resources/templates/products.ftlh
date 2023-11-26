@@ -1,45 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:security="/resources/**" access="permitAll">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <#--    <link rel="shortcut icon" href="cursach1.0/src/main/resources/static/icons8-дерево-64.png" type="image/png">-->
-
-    <#--  <meta charset="utf-8">-->
-    <#--    //<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-    <link rel="stylesheet" href="/static/css/style.css">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-          crossorigin="anonymous">
-
-    <title>BOOK SHOP</title>
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="Forest.ico">
+<#--    <link type="text/css" rel="stylesheet" href="/cursach1.0/src/main/resources/static/css/styles.css" />-->
+    <title>BOOKTREE</title>
 </head>
 <body>
-
+<link type="text/css" rel="stylesheet" href="/cursach1.0/src/main/resources/static/css/styles.css" />
 <header>
-    <div>
-        <nav>
-            <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/about">О нас</a></li>
-                <li><a href="/contacts">Контакты</a></li>
-                <li><a href="/product/allProducts">Все товары</a></li>
-            </ul>
-        </nav>
+    <div class="container">
+        <h3>BOOKTREE</h3>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/about">О нас</a></li>
+            <li><a href="/contacts">Контакты</a></li>
+            <li><a href="/product/allProducts">Все товары</a></li>
+        </ul>
     </div>
+    <img src="Forest.ico">
 </header>
 
 <main>
-    <h1>BOOK SHOP</h1><hr>
+    <h1>BOOKTREE</h1>
+    <hr>
     <#if user.email??>
         <h3>Имя пользовтеля: <i>${user.name}</i></h3>
         <form action="/logout" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Выйти">
         </form>
+        <#if user.isAdmin()>
+            <a href="/admin">Панель администратора</a>
+        </#if>
     <#else>
         <a href="/login">Войти</a>
     </#if>

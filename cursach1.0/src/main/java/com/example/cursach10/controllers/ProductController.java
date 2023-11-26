@@ -24,8 +24,18 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/product/allProducts")
-    public String productList(@RequestParam(name = "name", required = false)String name, Model model) {
+    //    @GetMapping("/product/allProducts")
+//    public String productList(@RequestParam(name = "name", required = false)String name, Model model) {
+//        model.addAttribute("products", productService.listProduct(name));
+//        return "allProducts";
+//    }
+//    @GetMapping("/product/allProducts")
+//    public String productList(Model model) {
+//        model.addAttribute("products", productService.listProduct(name));
+//        return "allProducts";
+//    }
+    @RequestMapping(value="/product/allProducts", method = RequestMethod.GET )
+    public String productList(@RequestParam(name = "name", required = false)String name, Model model){
         model.addAttribute("products", productService.listProduct(name));
         return "allProducts";
     }

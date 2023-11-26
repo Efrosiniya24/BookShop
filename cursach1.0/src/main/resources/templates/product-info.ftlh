@@ -5,12 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="Forest.ico">
 
-    <title>BOOK SHOP</title>
+    <title>BOOKTREE</title>
 </head>
 <body>
 <main>
-<h1>BOOK SHOP</h1><hr>
+<h1>BOOKTREE</h1><hr>
 <h4> Подробная информация о товаре</h4>
 <#list images as img>
     <img src="/images/${img.id}" height="60px" /><br><br>
@@ -25,6 +26,7 @@
 <b>Обложка: </b>${product.cover}<br>
 <b>Вес: </b>${product.weight}<br>
 <b>Возрастное ограничение: </b>${product.ageRestriction}<br>
+    <b>Автор: </b><a href="/user/${product.user.id}">${product.user.name}</a><br>
 <hr>
 <form action = "/product/delete/${product.id}" method="post">
     <input type="submit" value = "Удалить товар"/>
