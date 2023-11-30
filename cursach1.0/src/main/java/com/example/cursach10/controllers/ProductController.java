@@ -30,8 +30,8 @@ public class ProductController {
 //        return "allProducts";
 //    }
 //    @GetMapping("/product/allProducts")
-//    public String productList(Model model) {
-//        model.addAttribute("products", productService.listProduct(name));
+//    public String productLis
+//    products", productService.listProduct(name));
 //        return "allProducts";
 //    }
     @RequestMapping(value="/product/allProducts", method = RequestMethod.GET )

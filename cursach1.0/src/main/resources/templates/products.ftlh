@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:security="/resources/**" access="permitAll">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,7 +12,7 @@
     <title>BOOKTREE</title>
 </head>
 <body>
-<link type="text/css" rel="stylesheet" href="/cursach1.0/src/main/resources/static/css/styles.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/styles.css" />
 <header>
     <div class="container">
         <h3>BOOKTREE</h3>
