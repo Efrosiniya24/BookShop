@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/globals.css">
     <link rel="stylesheet" href="/static/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="Forest.ico">
+    <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
     <title>BOOKTREE</title>
 </head>
 <body>
 <link type="text/css" rel="stylesheet" href="/static/css/styles.css" />
 <header>
     <div class="container">
+        <img src="/static/photo/tree2.png"  height="50px">
         <h3>BOOKTREE</h3>
         <ul>
             <li><a href="/">Главная</a></li>
@@ -22,7 +23,6 @@
             <li><a href="/product/allProducts">Все товары</a></li>
         </ul>
     </div>
-    <img src="cursach1.0/src/main/resources/static/tree1.png"  height="160px">
 </header>
 
 <main>

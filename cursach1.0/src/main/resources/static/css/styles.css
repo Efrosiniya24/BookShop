@@ -9,25 +9,32 @@ html, body, header {
     padding: 0;
     width: 100vw;
     height: 7vh;
-    background-color: #24252B;
+    background-color: #79553D;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow: 3px 5px 5px rgb(0, 0, 0, 0.4);
+    box-shadow: 3px 5px 5px rgb(150, 76, 0, 0.4);
 }
 
-h3 {
+h3{
     padding: 1em;
     color: #f5f5f5;
     letter-spacing: 3px;
 }
 
-ul, li {
+
+ul {
     list-style: none;
     display: flex;
     padding: 1em;
     margin: 0;
+    color: #f5f5f5;
+}
+
+.container a {
+    color: #f5f5f5;
+    text-decoration: none;
 }
 
 li {
@@ -35,11 +42,10 @@ li {
     transition: all .5s ease-in-out;
     margin: 0.5em;
     padding: 10px 15px;
-    color: #f5f5f5;
     border-radius: 20px;
 }
 
 li:hover {
-    background-color: #017592;
+    background-color: #8A6642;
     box-shadow: 3px 5px 5px;
 }

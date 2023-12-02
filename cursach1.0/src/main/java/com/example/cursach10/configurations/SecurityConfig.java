@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/product/**", "/images/**", "/registration", "/product/allProducts", "/user/**", "/resources/**")
                 .permitAll()
-                .antMatchers("/static/css/**").permitAll()
+                .antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,33 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf(csrf ->csrf.disable())
-//
-//                .sessionManagement(session ->session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-//                .authorizeHttpRequests(auth ->
-//                        auth.requestMatchers("/", "/product/**", "/images/**", "/registration", "/product/allProducts", "/user/**", "/resources/**")
-//                                .permitAll()
-//                                .requestMatchers("static/css/**").permitAll()
-//
-//                )
-//
-//                .authorizeRequests(authorize -> authorize
-//                        .mvcMatchers("/resources/**", "/", "/product/**", "/images/**", "/registration", "/product/allProducts", "/user/**")
-//                        .permitAll()
-//                        .anyRequest().denyAll()
-//                );
-//        return http.build();
-//    }
-
-    //    @Override
-//    public void configure(WebSecurity web) {
-//        web.ignoring()
-//                .antMatchers(
-//                        "/css/**", "/fonts/**",
-//                        "/images/**");
-//    }
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
@@ -87,11 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(8);
     }
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withDefaultPasswordEncoder().username("user@user.com").password("password").roles("USER").build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
+
 }
 

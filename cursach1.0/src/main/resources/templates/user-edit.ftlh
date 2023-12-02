@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>BOOKTREE</title>
-    <link rel="icon" type="image/x-icon" href="Forest.ico">
+    <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
 </head>
 <body>
 <h1>BOOKTREE</h1>
