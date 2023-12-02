@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/static/css/globals.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="icon" type="image/x-icon" href="Forest.ico">
-<#--    <link type="text/css" rel="stylesheet" href="/cursach1.0/src/main/resources/static/css/styles.css" />-->
     <title>BOOKTREE</title>
 </head>
 <body>
@@ -23,7 +22,7 @@
             <li><a href="/product/allProducts">Все товары</a></li>
         </ul>
     </div>
-    <img src="Forest.ico">
+    <img src="cursach1.0/src/main/resources/static/tree1.png"  height="160px">
 </header>
 
 <main>
@@ -41,7 +40,6 @@
     <#else>
         <a href="/login">Войти</a>
     </#if>
-    <#--<h4>Все товары</h4>-->
     <form action="/" method="get">
         <h1 style="text-align: center">Поиск товаров</h1>
         <hr>
@@ -49,13 +47,6 @@
 
         <input type="submit" value="Поиск"/>
     </form>
-    <#--<#list products as product>-->
-    <#--    <div>-->
-    <#--        <p><b>${product.name} </b>${product.price} руб.| <a href="/product/${product.id}">Подробнее...</a> </p>-->
-    <#--    </div>-->
-    <#--<#else>-->
-    <#--    <h3>Товаров нет</h3>-->
-    <#--</#list>-->
     <#if user.email ??>
     <hr>
     <h3>Создать новый товар</h3>
