@@ -5,14 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<#--    <link href="/static/css/styles.css" rel="stylesheet" type="text/css">-->
+    <#--    <link href="/static/css/styles.css" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
     <title>BOOK SHOP</title>
 </head>
 <body>
-<link type="text/css" rel="stylesheet" href="/static/css/styles.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/cards.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/styles.css"/>
+<link type="text/css" rel="stylesheet" href="/static/css/cards.css"/>
 <header>
 
     <div class="container">
@@ -37,26 +37,29 @@
         <input type="submit" value="Поиск"/>
     </form>
     <div class="cards">
-    <#list products as product>
-        <div class="card">
-<#--            <img src="/images/${product.previewImageId}" alt="">-->
-            <div class="card_top">
-                <img class="my-image" src="/images/${product.previewImageId}" alt="">
-                <p><b>${product.name}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
-            </div>
-            <div class="card_bottom">
-                <div class="card_prices">
-                    <div class="card_price card_price-common">${product.price} руб.</div>
+        <#list products as product>
+            <div class="card">
+                <#--            <img src="/images/${product.previewImageId}" alt="">-->
+                <div class="card_top">
+                    <a href="/product/${product.id}" class="card_image">
+                        <img class="my-image" src="/images/${product.previewImageId}" alt="">
+                        <p><b>${product.name}</b> ${product.price} руб. | <a
+                                    href="/product/${product.id}">Подробнее...</a></p>
+                    </a>
                 </div>
-                <a href="/product/${product.id}" class="card_title">
-                    ${product.name}
-                </a>
-                <button class="card_add">В корзину</button>
+                <div class="card_bottom">
+                    <div class="card_prices">
+                        <div class="card_price card_price-common">${product.price} руб.</div>
+                    </div>
+                    <a href="/product/${product.id}" class="card_title">
+                        ${product.name}
+                    </a>
+                    <button class="card_add">В корзину</button>
+                </div>
             </div>
-        </div>
-    <#else>
-        <h3>Товаров нет</h3>
-    </#list>
+        <#else>
+            <h3>Товаров нет</h3>
+        </#list>
     </div>
 </main>
 <footer></footer>

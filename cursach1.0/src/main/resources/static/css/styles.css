@@ -10,7 +10,6 @@ html, body, header {
     width: 100vw;
     height: 7vh;
     background-color: #79553D;
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -48,4 +47,8 @@ li {
 li:hover {
     background-color: #8A6642;
     box-shadow: 3px 5px 5px;
+}
+
+main {
+    position: relative;
 }
