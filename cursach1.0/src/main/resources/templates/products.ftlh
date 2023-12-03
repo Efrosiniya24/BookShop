@@ -12,6 +12,7 @@
 </head>
 <body>
 <link type="text/css" rel="stylesheet" href="/static/css/styles.css" />
+
 <header>
     <div class="container">
         <img src="/static/photo/tree2.png"  height="50px">
