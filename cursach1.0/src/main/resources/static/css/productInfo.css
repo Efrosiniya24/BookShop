@@ -21,16 +21,20 @@ html, body {
     width: 35%;
     margin-top: 60px;
 }
+/*.left-column img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    !*opacity: 0;*!*/
+/*    transition: all 0.3s ease;*/
+/*}*/
 .left-column img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    /*opacity: 0;*/
-    transition: all 0.3s ease;
+    width: 50%; /* Reduce width to 50% of original size */
+    height: auto; /* Auto-adjust height to maintain aspect ratio */
+    object-fit: cover; /* Scale proportionally to fill the container */
 }
-
 .left-column img.active {
     opacity: 1;
 }
@@ -179,6 +183,11 @@ html, body {
 }
 .cart-btn:hover {
     background-color: #64af3d;
+}
+
+.right-column a {
+    color: #111;
+    text-decoration: none;
 }
 
 

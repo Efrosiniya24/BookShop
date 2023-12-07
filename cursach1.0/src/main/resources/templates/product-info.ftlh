@@ -45,7 +45,7 @@
             <b>Обложка: </b>${product.cover}<br>
             <b>Вес: </b>${product.weight}<br>
             <b>Возрастное ограничение: </b>${product.ageRestriction}<br>
-            <b>Автор: </b><a href="/user/${product.user.id}">${product.user.name}</a><br>
+            <b>Продавец: </b> <a href="/user/${product.user.id}">${product.user.name}</a><br>
             <hr>
             <div class="product-price">${product.price} <a class="cart-btn" href="#">Add to cart</a></div>
         </div>
@@ -56,6 +56,15 @@
 
     </form>
 </main>
-<footer></footer>
+<#--<footer>-->
+<#--    <div class="containerFooter">-->
+<#--        <ul>2010—2023 © BOOKTREE — Книжный интернет-магазин</ul>-->
+<#--        <ul>Телефон: +375 (429) 123-45-67</ul>-->
+<#--        <ul>email:booktree@gmail.com</ul>-->
+<#--    </div>-->
+<#--</footer>-->
+
+<#--<footer class="footer-container">-->
+<#--</footer>-->
 </body>
 </html>

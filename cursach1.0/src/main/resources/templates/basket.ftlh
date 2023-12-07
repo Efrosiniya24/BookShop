@@ -27,15 +27,7 @@
     </div>
 </header>
 <main>
-    <h1>BOOK SHOP</h1>
-    <hr>
-    <h4>Все товары</h4>
-    <form action="/" method="get">
-        <h1 style="text-align: center">Поиск товаров</h1>
-        <hr>
-        Поиск по названию книги: <input type="text" name="name"><br>
-        <input type="submit" value="Поиск"/>
-    </form>
+    <h4>Корзина</h4>
     <div class="cards">
         <#list products as product>
             <div class="card">

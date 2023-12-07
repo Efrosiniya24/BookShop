@@ -11,17 +11,20 @@
     <title>BOOKTREE</title>
 </head>
 <body>
-<link type="text/css" rel="stylesheet" href="/static/css/styles.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/styles.css"/>
 
 <header>
     <div class="container">
-        <img src="/static/photo/tree2.png"  height="50px">
+        <img src="/static/photo/tree2.png" height="50px">
         <h3>BOOKTREE</h3>
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/about">О нас</a></li>
             <li><a href="/contacts">Контакты</a></li>
             <li><a href="/product/allProducts">Все товары</a></li>
+            <#if !user.isAdmin()>
+               <li><a href="/basket/">Корзина</a></li>
+            </#if>
         </ul>
     </div>
 </header>
@@ -50,6 +53,7 @@
     </form>
     <#if user.email ??>
     <hr>
+    <#if user.isAdmin()>
     <h3>Создать новый товар</h3>
     <form action="/product/create" method="post" enctype="multipart/form-data">
         Название: <input type="text" name="name"/><br><br>
@@ -68,9 +72,10 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Добавить товар"/>
         </#if>
-
+        </#if>
     </form>
 </main>
-<footer></footer>
+<footer class="footer-container">
+</footer>
 </body>
 </html>
