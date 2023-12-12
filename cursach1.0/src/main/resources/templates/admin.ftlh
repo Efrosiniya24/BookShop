@@ -31,7 +31,7 @@
                 </form>
             </th>
             <th><a href="/admin/user/edit/${user.id}">Редактировние</a></th>
-            <th><a href="/user/${user.id}">Подробная информация</a></th>
+            <th><a href="/admin/${user.id}">Подробная информация</a></th>
         </tr>
     <#else>
         <h3>Пользователей нет</h3>

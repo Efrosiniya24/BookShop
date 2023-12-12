@@ -22,8 +22,8 @@
             <li><a href="/about">О нас</a></li>
             <li><a href="/contacts">Контакты</a></li>
             <li><a href="/product/allProducts">Все товары</a></li>
-            <#if !user.isAdmin()>
-               <li><a href="/basket/">Корзина</a></li>
+            <#if user.isUser()>
+                <li><a href="/user/${user.id}" >Корзина</a></li>
             </#if>
         </ul>
     </div>
@@ -44,11 +44,11 @@
     <#else>
         <a href="/login">Войти</a>
     </#if>
-    <form action="/" method="get">
+    <form action="/product/allProducts" method="get">
         <h1 style="text-align: center">Поиск товаров</h1>
         <hr>
         Поиск по названию книги: <input type="text" name="name"><br>
-
+        //<input type="hidden" name="redirect-to" value="/product/id">
         <input type="submit" value="Поиск"/>
     </form>
     <#if user.email ??>

@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -61,14 +60,29 @@ public class Product {
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
 
-//    @PrePersist
+    //    @PrePersist
 //    private void onCreate() { dateOfCreated = LocalDateTime.now(); }
     @PrePersist
-    public void init(){
+    public void init() {
         dateOfCreated = LocalDateTime.now();
     }
+
     public void addImageToProduct(Image image) {
         image.setProduct(this);
         images.add(image);
     }
+
+//    @ManyToMany(mappedBy = "products", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+//    private Set<Cart> carts = new HashSet<>();
+
+//    public void addToCart(Cart cart) {
+//        carts.add(cart);
+//        cart.getProducts().add(this);
+//    }
+//
+//    public void removeFromCart(Cart cart) {
+//        carts.remove(cart);
+//        cart.getProducts().remove(this);
+//    }
+
 }
