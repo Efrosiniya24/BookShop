@@ -56,15 +56,5 @@
 
     </form>
 </main>
-<#--<footer>-->
-<#--    <div class="containerFooter">-->
-<#--        <ul>2010—2023 © BOOKTREE — Книжный интернет-магазин</ul>-->
-<#--        <ul>Телефон: +375 (429) 123-45-67</ul>-->
-<#--        <ul>email:booktree@gmail.com</ul>-->
-<#--    </div>-->
-<#--</footer>-->
-
-<#--<footer class="footer-container">-->
-<#--</footer>-->
 </body>
 </html>

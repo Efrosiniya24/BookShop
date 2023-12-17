@@ -68,6 +68,21 @@ h3{
     letter-spacing: 3px;
 }
 
+.enter {
+    display: block;
+    width: 200px; /* Задаем ширину кнопки */
+    height: 40px; /* Задаем высоту кнопки */
+    font-weight: 400;
+    font-size: 17px;
+    color: #538930;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #538930;
+    border-radius: 4px;
+    cursor: pointer; /* Меняем курсор при наведении */
+    transition: 0.2s;
+    margin-top: auto; /* Прижимаем кнопку к низу карточки */
+}
 
 ul {
     list-style: none;
@@ -82,6 +97,10 @@ ul {
     text-decoration: none;
 }
 
+.card_add a {
+    color: #f5f5f5;
+    text-decoration: none;
+}
 li {
     cursor: pointer;
     transition: all .5s ease-in-out;
@@ -99,3 +118,36 @@ main {
     position: relative;
 }
 
+.search-form{
+    border: 1px solid #1A7525;
+    display: inline-flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #E1E8EE;
+}
+
+.search-form__txt{
+    border: none;
+    width:200px;
+    outline:none;
+    font-size:20px;
+    padding-right: 10px;
+    background-color: transparent;
+}
+
+.search-form_btn{
+    border: none;
+    background-color: transparent;
+}
+
+.search-font__image{
+    display:flow;
+    align-items: center ;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+}

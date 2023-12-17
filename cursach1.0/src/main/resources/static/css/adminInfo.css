@@ -1,0 +1,45 @@
+.containerInfo {
+  background:  #1A7525;
+  border-radius: 30px;
+  position: absolute;
+  overflow: hidden;
+  width: 500px;
+  max-width: 100%;
+  min-height: 240px;
+
+
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+}
+
+.containerInfo h1{
+  color: #FFFFFF;
+  text-align: center;
+  left: 70%;
+  font-size: 50px;
+}
+
+.containerInfo b{
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 25px;
+}
+
+.containerInfo p{
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+}
+.products{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.products p{
+  color: #111111;
+  font-size: 22px;
+  text-align: center;
+}

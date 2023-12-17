@@ -24,6 +24,11 @@ public class AdminController {
         model.addAttribute("users", userService.list());
         return "admin";
     }
+
+    @GetMapping("/addProducts")
+    public String addProducts(){
+        return "addProducts";
+    }
     @PostMapping("/admin/user/ban/{id}")
     public String userBan(@PathVariable("id")Long id){
         userService.banUser(id);
@@ -37,9 +42,12 @@ public class AdminController {
     }
 
     @PostMapping("/admin/user/edit")
-    public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String, String> form) {
+    public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String, String> form, Model model) {
+        // Process form data and update user roles
         userService.changeUserRoles(user, form);
-        return "redirect:/admin";
+        // Update model and redirect to a valid URL
+        model.addAttribute("roles", Role.values());
+        return "redirect:/admin"; // Redirect back to admin page after successful edit
     }
 
 

@@ -3,39 +3,70 @@
 <head>
     <title>BOOKTREE</title>
     <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/styles.css"/>
 </head>
 <body>
-<h1>BOOKTREE</h1>
+<header>
+    <div class="container">
+        <img src="/static/photo/tree2.png" height="50px">
+        <h3>BOOKTREE</h3>
+        <ul>
+            <li><a href="/admin">Пользователи</a></li>
+            <li><a href="/product/allProducts">Все товары</a></li>
+            <li><a href="/addProducts">Добавление товаров</a></li>
+        </ul>
+    </div>
+</header>
 <hr>
-<h4>Панель администратора</h4>
-<table border="1">
-    <tr>
-        <th>Email</th>
-        <th>Номер телефона</th>
-        <th>Активность</th>
-        <th>Роли</th>
-        <th>Бан</th>
-        <th>Редактирование</th>
-        <th>Подробная информация</th>
-    </tr>
-    <#list users as user>
-        <tr>
-            <th>${user.email}</th>
-            <th>${user.phoneNumber}</th>
-            <th><#if user.active>true<#else>false</#if></th>
-            <th><#list user.roles as role>${role}</#list></th>
-            <th>
-                <form action="/admin/user/ban/${user.id}" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Бан">
-                </form>
-            </th>
-            <th><a href="/admin/user/edit/${user.id}">Редактировние</a></th>
-            <th><a href="/admin/${user.id}">Подробная информация</a></th>
-        </tr>
-    <#else>
-        <h3>Пользователей нет</h3>
-    </#list>
-</table>
+<main class="table">
+    <section class="table__header">
+        <h1>Панель администратора</h1>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Номер телефона</th>
+                <th>Активность</th>
+                <th>Роль</th>
+                <th>Бан</th>
+                <th>Подробная информация</th>
+                <th>Редактировать</th>
+            </tr>
+            </thead>
+            <tbody>
+            <#list users as user>
+                <tr>
+                    <td>${user.email}</td>
+                    <td>${user.phoneNumber}</td>
+                    <td><#if user.active>true<#else>false</#if></td>
+                    <td><#list user.roles as role>
+                        <#if user.isUser()>
+                        <p class="status user">${role}
+                            </#if>
+                            <#if user.isAdmin()>
+                        <p class="status admin">${role}
+                            </#if>
+                            </#list>
+                        </p>
+                    </td>
+                    <td>
+                        <form action="/admin/user/ban/${user.id}" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <input type="submit" value="Бан" class="ban-button">
+                        </form>
+                    </td>
+                    <td><b><a href="/admin/user/edit/${user.id}">Редактировние</a></b></td>
+                    <td><b><a href="/admin/${user.id}">Подробная информация</a></b></td>
+                </tr>
+            <#else>
+                <h3>Пользователей нет</h3>
+            </#list>
+            </tbody>
+        </table>
+    </section>
+</main>
 </body>
 </html>

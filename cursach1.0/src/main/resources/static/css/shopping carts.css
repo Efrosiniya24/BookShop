@@ -45,7 +45,7 @@
 .delete-btn {
     width: 18px;
     height: 17px;
-    background: url("static/photo/delete.png") no-repeat center;
+    background: url("../../../../../../../booktree/src/main/resources/static/photo/delete.png") no-repeat center;
 }
 
 .like-btn {

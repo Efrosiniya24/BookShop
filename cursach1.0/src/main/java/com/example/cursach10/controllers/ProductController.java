@@ -1,9 +1,8 @@
 package com.example.cursach10.controllers;
 
-import com.example.cursach10.models.Cart;
 import com.example.cursach10.models.Product;
 import com.example.cursach10.models.User;
-import com.example.cursach10.repositories.CartRepository;
+import com.example.cursach10.models.enums.Role;
 import com.example.cursach10.services.ProductService;
 import com.example.cursach10.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +15,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.security.Principal;
 
+import static com.example.cursach10.models.enums.Role.ROLE_USER;
+
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
     private final UserService userService;
-    private final CartRepository cartRepository;
+//    private final CartRepository cartRepository;
 
     @GetMapping("/")
     public String product(@RequestParam(name = "name", required = false) String name, Principal principal, Model model) {
         model.addAttribute("users", userService.list());
         model.addAttribute("products", productService.listProduct(name));
         model.addAttribute("user", productService.getUserByPrincipal(principal));
-        return "products";
+        model.addAttribute("roles", Role.values());
+        if(productService.getUserByPrincipal(principal).isAdmin())
+            return "admin_page";
+        else
+            return "products";
+
     }
 
     @RequestMapping(value = "/product/allProducts", method = RequestMethod.GET)

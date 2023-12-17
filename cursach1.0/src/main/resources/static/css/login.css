@@ -182,3 +182,8 @@ body{
     transform: translateX(200%);
 }
 
+.toggle-container a {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+

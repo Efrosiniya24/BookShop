@@ -1,9 +1,7 @@
 package com.example.cursach10.controllers;
 
-import com.example.cursach10.models.Cart;
 import com.example.cursach10.models.Product;
 import com.example.cursach10.models.User;
-import com.example.cursach10.repositories.CartRepository;
 import com.example.cursach10.services.ProductService;
 import com.example.cursach10.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,33 +20,46 @@ import java.util.Set;
 public class UserController {
     private final UserService userService;
     private final ProductService productService;
-    private final CartRepository cartRepository;
-
-    //    @GetMapping("/login")
-//    public String login() {
+//    private final CartRepository cartRepository;
+//    @GetMapping("/login")
+//    public String login(Principal principal, Model model) {
+//        model.addAttribute("user", userService.getUserByPrincipal(principal));
 //        return "login";
 //    }
-    @GetMapping("/login")
-    public String login(Principal principal, Model model) {
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
-        return "login";
-    }
+//
+//    @GetMapping("/registration")
+//    public String registration(Principal principal, Model model) {
+//        model.addAttribute("user", userService.getUserByPrincipal(principal));
+//        return "registration";
+//    }
+@GetMapping("/login")
+public String login() {
+    return "login";
+}
 
     @GetMapping("/registration")
-    public String registration(Principal principal, Model model) {
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
-        return "login";
+    public String registration() {
+        return "registration";
     }
-
     @PostMapping("/registration")
     public String CreateUSer(User user, Model model) {
         if (!userService.createUser(user)) {
             model.addAttribute("errorMessage", "Пользователь с email: " +
                     user.getEmail() + " уже существует");
-            return "login";
+            return "registration";
         }
         return "redirect:/login";
     }
+    @GetMapping("/admin/{user}")
+    public String adminInfo(@PathVariable("user") User user, Model model, Principal principal) {
+        model.addAttribute("users", userService.list());
+        model.addAttribute("user",productService.getUserByPrincipal(principal));
+        model.addAttribute("products", user.getProducts());
+        return "admin-info";
+    }
+}
+
+
 //    @GetMapping("/user/{user}")
 //    public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
 ////        model.addAttribute("users", userService.list());
@@ -77,11 +88,3 @@ public class UserController {
 //        return "shoppingCart";
 //
 //}
-    @GetMapping("/admin/{user}")
-    public String adminInfo(@PathVariable("user") User user, Model model, Principal principal) {
-        model.addAttribute("users", userService.list());
-        model.addAttribute("user",productService.getUserByPrincipal(principal));
-        model.addAttribute("products", user.getProducts());
-        return "admin-info";
-    }
-}

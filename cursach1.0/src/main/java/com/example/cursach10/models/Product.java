@@ -60,8 +60,6 @@ public class Product {
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
 
-    //    @PrePersist
-//    private void onCreate() { dateOfCreated = LocalDateTime.now(); }
     @PrePersist
     public void init() {
         dateOfCreated = LocalDateTime.now();
@@ -71,6 +69,7 @@ public class Product {
         image.setProduct(this);
         images.add(image);
     }
+}
 
 //    @ManyToMany(mappedBy = "products", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 //    private Set<Cart> carts = new HashSet<>();
@@ -84,5 +83,3 @@ public class Product {
 //        carts.remove(cart);
 //        cart.getProducts().remove(this);
 //    }
-
-}

@@ -1,10 +1,7 @@
 package com.example.cursach10.services;
 
-import com.example.cursach10.models.Cart;
 import com.example.cursach10.models.Image;
 import com.example.cursach10.models.User;
-import com.example.cursach10.repositories.CartRepository;
-import com.example.cursach10.repositories.ImageRepository;
 import com.example.cursach10.repositories.ProductRepository;
 import com.example.cursach10.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +23,7 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
-    private final CartRepository cartRepository;
+//    private final CartRepository cartRepository;
 
     public List<Product> listProduct(String name) {
         if (name != null) return productRepository.findByName(name);
