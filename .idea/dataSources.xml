@@ -15,7 +15,7 @@
       <jdbc-url>jdbc:mysql://localhost:3306/bookshop</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="shop@localhost" uuid="c353d1c6-0ae5-4ff0-8072-3b78025fff08">
+    <data-source source="LOCAL" name="shop@localhost" uuid="3338a8fb-42fd-4c10-99b1-581548662dcc">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

@@ -59,7 +59,7 @@
             <div class="toggle-panel toggle-right">
                 <h1>Добро пожаловать!</h1>
                 <p>Введите Ваши персональные данные для авторизации</p>
-                <button class="hidden"><a class="enter" href="/login">Зарегистрироваться</a></button>
+                <button class="hidden"><a class="enter" href="/login">Войти</a></button>
             </div>
         </div>
     </div>

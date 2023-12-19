@@ -31,10 +31,11 @@ main form input[type="submit"] {
     color: #ffffff;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
-.p{
+p{
     color: #111111;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     top:50%;
     margin: 10px;

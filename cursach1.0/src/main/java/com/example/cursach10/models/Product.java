@@ -18,7 +18,7 @@ import java.util.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "product_id")
     private Long id;
 
     @Column(name = "name")
@@ -54,17 +54,34 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "product")
     private List<Image> images = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id") // Название колонки, содержащей внешний ключ
+    private User user; // Поле для связи с пользователем
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
     @PrePersist
     public void init() {
         dateOfCreated = LocalDateTime.now();
     }
 
+    //    @ManyToMany
+//    @JoinTable(
+//            name = "user_products",
+//            joinColumns = @JoinColumn(name = "products_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id")
+//    )
+//    private List<User> users = new ArrayList<>();
+//
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_carts",
+//            joinColumns = @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "carts_id")
+//    )
+//    private List<Cart> carts = new ArrayList<>();
     public void addImageToProduct(Image image) {
         image.setProduct(this);
         images.add(image);

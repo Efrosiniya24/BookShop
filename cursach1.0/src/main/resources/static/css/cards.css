@@ -1,13 +1,13 @@
 .cards {
     display: grid;
-    /* Автоматически заполняем на всю ширину grid-контейнера */
+
     grid-template-columns: repeat(auto-fill, 225px);
     width: 100%;
-    max-width: 1000px; /* Ширина grid-контейнера */
+    max-width: 1000px;
     justify-content: center;
-    justify-items: center; /* Размещаем карточку по центру */
-    column-gap: 30px; /* Отступ между колонками */
-    row-gap: 40px; /* Отступ между рядами */
+    justify-items: center;
+    column-gap: 30px;
+    row-gap: 40px;
     margin: 0 auto;
 }
 .card {
@@ -15,28 +15,29 @@
     min-height: 350px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Размещаем элементы в колонку */
+    flex-direction: column;
     border-radius: 4px;
     transition: 0.2s;
     position: relative;
+  border: 2px solid #0C451E;
 }
 
 .card_prices {
     display: flex;
     margin-bottom: 10px;
-    flex: 0 0 50%; /* Размещаем цены равномерно в две колонки */
+    flex: 0 0 50%;
 }
 
 .card_top {
-    flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
+    flex: 0 0 220px;
     position: relative;
-    overflow: hidden; /* Скрываем, что выходит за пределы */
+    overflow: hidden;
 }
 
 .card_bottom {
     display: flex;
     flex-direction: column;
-    flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
+    flex: 1 0 auto;
     padding: 10px;
 }
 .card_price-common {
@@ -66,9 +67,9 @@
     text-align: center;
     border: 1px solid #538930;
     border-radius: 4px;
-    cursor: pointer; /* Меняем курсор при наведении */
+    cursor: pointer;
     transition: 0.2s;
-    margin-top: auto; /* Прижимаем кнопку к низу карточки */
+    margin-top: auto;
     /*transform: scale(1.1);*/
 }
 

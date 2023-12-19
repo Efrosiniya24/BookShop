@@ -116,8 +116,26 @@ section {
     text-transform: uppercase;
     transition: all .55s ease;
 }
+.hero-text input {
+    display: inline-flex;
+    color: white;
+    background: #4d9559;
+    border: 1px solid transparent;
+    padding: 12px 30px;
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
+}
 
 .hero-text a:hover {
+    background: transparent;
+    border: 1px solid white;
+    transform: translateX(8px);
+}
+.hero-text input:hover {
     background: transparent;
     border: 1px solid white;
     transform: translateX(8px);
@@ -128,11 +146,18 @@ section {
     border: 1px solid white;
     margin-left: 20px;
 }
+.hero-text input.ctaa {
+    background: transparent;
+    border: 1px solid white;
+    margin-left: 20px;
+}
 
 .hero-text a.ctaa i {
     vertical-align: middle;
     margin-right: 5px;
 }
+
+
 
 @media (max-width: 1535px) {
     header {

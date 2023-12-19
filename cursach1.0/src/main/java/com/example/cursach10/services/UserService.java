@@ -4,6 +4,9 @@ import com.example.cursach10.models.enums.Role;
 import com.example.cursach10.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.cursach10.models.User;
@@ -69,4 +72,21 @@ public class UserService {
 
     public User getUserByPrincipal(Principal principal) {    if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());}
+
+//    public User getCurrentUser(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User user = (User) authentication.getPrincipal();
+//        return  userRepository.findByEmail(user.getEmail());
+//    }
+public User getCurrentUser() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = authentication.getPrincipal();
+    if (principal instanceof User)
+        return userRepository.findByEmail(((User) principal).getEmail());
+    return null;
+}
+
+    public User getById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

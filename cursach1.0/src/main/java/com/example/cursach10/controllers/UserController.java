@@ -20,7 +20,7 @@ import java.util.Set;
 public class UserController {
     private final UserService userService;
     private final ProductService productService;
-//    private final CartRepository cartRepository;
+    //    private final CartRepository cartRepository;
 //    @GetMapping("/login")
 //    public String login(Principal principal, Model model) {
 //        model.addAttribute("user", userService.getUserByPrincipal(principal));
@@ -32,15 +32,16 @@ public class UserController {
 //        model.addAttribute("user", userService.getUserByPrincipal(principal));
 //        return "registration";
 //    }
-@GetMapping("/login")
-public String login() {
-    return "login";
-}
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
+
     @PostMapping("/registration")
     public String CreateUSer(User user, Model model) {
         if (!userService.createUser(user)) {
@@ -50,41 +51,67 @@ public String login() {
         }
         return "redirect:/login";
     }
+//    @GetMapping("/admin/{user}")
+//    public String adminInfo(@PathVariable("user") User user, Model model) {
+//        model.addAttribute("users", userService.list());
+//        model.addAttribute("user", userService.getCurrentUser());
+//        model.addAttribute("products", user.getProducts());
+//        return "admin-info";
+//    }
     @GetMapping("/admin/{user}")
     public String adminInfo(@PathVariable("user") User user, Model model, Principal principal) {
         model.addAttribute("users", userService.list());
-        model.addAttribute("user",productService.getUserByPrincipal(principal));
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
         model.addAttribute("products", user.getProducts());
         return "admin-info";
     }
+//    @GetMapping("/admin/{user}")
+//    public String adminInfo(@PathVariable("user") User user, Model model) {
+//        model.addAttribute("users", userService.list());
+//        model.addAttribute("user", userService.getCurrentUser());
+//        model.addAttribute("products", user.getProducts());
+//        return "admin-info";
+//    }
+
+//    @GetMapping("/admin/{user}")
+//    public String adminInfo(@PathVariable("user") Long userId, Model model) {
+//        model.addAttribute("users", userService.list());
+//        model.addAttribute("user", userService.getCurrentUser());
+//        model.addAttribute("products", userService.getById(userId).getProducts());
+//        return "admin-info";
+//    }
+
+//    public String adminInfo(@PathVariable("user") Long userId, Model model) {
+//        User userFromDb = userService.getById(userId);
+//        model.addAttribute("users", userService.list());
+//        model.addAttribute("user", userService.getCurrentUser());
+//        model.addAttribute("products", userFromDb.getProducts());
+//        return "admin-info";
+//    }
+
+//    @GetMapping("/admin/{user}")
+//    public String adminInfo(@PathVariable("user") Long userId, Model model) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null || !currentUser.isAdmin()) {
+//            // Handle the case when the user is not authenticated or not an admin
+//            return "redirect:/";
+//        }
+//
+//        User userFromDb = userService.getById(userId);
+//        model.addAttribute("users", userService.list());
+//        model.addAttribute("user", currentUser);
+//        model.addAttribute("products", userFromDb.getProducts());
+//        return "admin-info";
+//    }
+
+    @GetMapping("/profile")
+    public String profile(Model model, Principal principal) {
+        model.addAttribute("users", userService.list());
+        model.addAttribute("user", userService.getCurrentUser());
+        model.addAttribute("products", userService.getCurrentUser().getProducts());
+//        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        return "/profile";
+    }
 }
 
-
-//    @GetMapping("/user/{user}")
-//    public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
-////        model.addAttribute("users", userService.list());
-////
-////        Cart cart = cartRepository.findCartByUser(user);
-////        if (cart != null) {
-////            Set<Product> products = cart.getProducts();
-////            model.addAttribute("products", products);
-////        }
-////
-////        model.addAttribute("user", productService.getUserByPrincipal(principal));
-//        return "shoppingCart";
-//    }
-//    @GetMapping("/user/{id}")
-//    public String getCart(@PathVariable Long id, Model model, @PathVariable("id") User user) {
-//        Cart cart = cartRepository.findCartByUser(user);
-//        model.addAttribute("cart", cart);
-//        model.addAttribute("products", cart.getProducts());
-//        return "shoppingCart";
-//    }  model.addAttribute("user", productService.getUserByPrincipal(principal));
-//    @GetMapping("/user/{id}")
-//    public String getCart(Model model, Principal principal,@PathVariable Long id) {
-//        Cart cart = cartRepository.findCartByUser(productService.getUserByPrincipal(principal));
-//        model.addAttribute("cart", cart);
-//        model.addAttribute("products", cart.getProducts());
-//        return "shoppingCart";
-//
-//}

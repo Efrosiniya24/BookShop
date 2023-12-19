@@ -27,21 +27,29 @@ public class ProductController {
     @GetMapping("/")
     public String product(@RequestParam(name = "name", required = false) String name, Principal principal, Model model) {
         model.addAttribute("users", userService.list());
-        model.addAttribute("products", productService.listProduct(name));
+        model.addAttribute("products", productService.findAll());
+//        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("user", productService.getUserByPrincipal(principal));
         model.addAttribute("roles", Role.values());
-        if(productService.getUserByPrincipal(principal).isAdmin())
-            return "admin_page";
-        else
-            return "products";
 
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null ) {
+            return "products";
+        }
+        else if (currentUser.isAdmin()) {
+            return "admin_page";
+        }else
+            return "products";
     }
+
 
     @RequestMapping(value = "/product/allProducts", method = RequestMethod.GET)
     public String productList(@RequestParam(name = "name", required = false) String name, Model model, Principal principal) {
         model.addAttribute("products", productService.listProduct(name));
         model.addAttribute("users", userService.list());
-        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        model.addAttribute("user", userService.getCurrentUser());
+//        model.addAttribute("user_id", userService.getCurrentUser().getId());
+//        model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "allProducts";
     }
 

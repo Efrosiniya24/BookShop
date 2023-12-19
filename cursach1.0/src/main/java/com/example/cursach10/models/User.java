@@ -54,6 +54,10 @@ public class User implements UserDetails {
         dateOfCreated = LocalDateTime.now();
     }
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cart cart;
+
+
     //securiry
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

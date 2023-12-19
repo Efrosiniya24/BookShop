@@ -23,11 +23,15 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 //    private final CartRepository cartRepository;
 
     public List<Product> listProduct(String name) {
         if (name != null) return productRepository.findByName(name);
         return productRepository.findAll();
+    }
+    public List<Product> findAll(){
+       return productRepository.findAll();
     }
 //    public Cart userCart(User user){
 //            return cartRepository.findCartByUser(user);
@@ -54,7 +58,8 @@ public class ProductService {
 //                .collect(Collectors.toList());
 //    }
     public void saveProduct(Principal principal, Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
-        product.setUser(getUserByPrincipal(principal));
+        product.setUser(userService.getCurrentUser());
+//        product.setUser(getUserByPrincipal(principal));
         Image image1;
         Image image2;
         Image image3;
@@ -82,6 +87,12 @@ public class ProductService {
         if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
+//    public User getUserByPrincipal(Principal principal) {
+//        if (principal == null) return new User();
+//        String username = principal.getName();
+//        return userRepository.findByEmail(username);
+//    }
+
 
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();

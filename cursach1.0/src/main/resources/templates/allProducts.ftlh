@@ -8,40 +8,55 @@
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
     <title>BOOK SHOP</title>
+    <style>
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-input {
+            margin-bottom: 10px;
+        }
+
+        .search-submit {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 <link type="text/css" rel="stylesheet" href="/static/css/styles.css"/>
 <link type="text/css" rel="stylesheet" href="/static/css/cards.css"/>
 <header>
-
     <div class="container">
         <img src="/static/photo/tree2.png" height="50px">
-        <h3>BOOKTREE</h3>
+        <a href="/" class="logo">BOOKTREE</a>
         <ul>
             <li><a href="/">Главная</a></li>
-            <li><a href="/about">О нас</a></li>
-            <li><a href="/contacts">Контакты</a></li>
             <li><a href="/product/allProducts">Все товары</a></li>
             <#if user.isUser()>
-                <li><a href="/user/${user.id}">Корзина</a></li>
+                <li><a href="/profile">Профиль</a></li>
+                <li><a href="/cart">Корзина</a></li>
+            <#else>
             </#if>
         </ul>
     </div>
 </header>
 <main>
-    <h1>BOOK SHOP</h1>
-    <hr>
-    <h4>Все товары</h4>
+    <div class="search-container">
+        <form action="#" method="get">
+            <input class="search-input" type="text" name="name">
+            <input class="search-submit" type="submit" value="Поиск">
+        </form>
+    </div>
     <form action="/product/allProducts" method="get">
-        <h1 style="text-align: center">Поиск товаров</h1>
+        <h1 style="text-align: center">Все товары</h1>
         <hr>
-        Поиск по названию книги: <input type="text" name="name"><br>
-        <input type="submit" value="Поиск"/>
     </form>
     <div class="cards">
         <#list products as product>
-
             <div class="card">
+                <#--            <img src="/images/${product.previewImageId}" alt="">-->
                 <div class="card_top">
                     <a href="/product/${product.id}" class="card_image">
                         <img class="my-image" src="/images/${product.previewImageId}" alt="">
@@ -52,21 +67,27 @@
                 <div class="card_bottom">
                     <div class="card_prices">
                         <div class="card_price card_price-common">${product.price} руб.</div>
-                    </div>
-                    <a href="/product/${product.id}" class="card_title">
-                        ${product.name}
-                    </a>
 
-                    <form action="/AddToCart" method="post" enctype="application/x-www-form-urlencoded">
-                        <#--                        <form action="/AddToCart" method="post" >-->
-                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="hidden" name="nameProduct" value="${product.name}">
-                        <#--                        <input type="hidden" name="user_id" value="${user.id}">-->
-                        <input type="hidden" name="cost" value="${product.price}">
-                        <input class="card_add" type="submit" value="В корзину"/>
-                        <#--                        <button class="card_add" type="submit" value="В корзину">В корзину</button>-->
+                        <a href="/product/${product.id}" class="card_title">${product.name}</a>
+                        <#if user.isUser()>
+                    </div>
+                    <form action="/AddProductToCart" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <input type="hidden" name="product_id" value="${product.id}">
+                        <button class="card_add">В корзину</button>
                     </form>
+
                 </div>
+                <#else>
+                </#if>
+                <#if user.isAdmin()>
+                    <form action="/product/delete/${product.id}" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        input <input type="submit" value="Удалить товар"/>
+                        <button class="card_add">Удалить товар</button>
+                    </form>
+                <#else>
+                </#if>
             </div>
         <#else>
             <h3>Товаров нет</h3>

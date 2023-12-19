@@ -16,12 +16,12 @@
 <header>
     <div class="container">
         <img src="/static/photo/tree2.png" height="50px">
-        <h3>BOOKTREE</h3>
+        <a href="/" class="logo">BOOKTREE</a>
         <ul>
             <li><a href="/">Главная</a></li>
-            <li><a href="/about">О нас</a></li>
-            <li><a href="/contacts">Контакты</a></li>
             <li><a href="/product/allProducts">Все товары</a></li>
+            <li><a href="/profile">Профиль</a></li>
+            <li><a href="/cart">Корзина</a></li>
         </ul>
     </div>
 </header>
@@ -47,14 +47,18 @@
             <b>Возрастное ограничение: </b>${product.ageRestriction}<br>
             <b>Продавец: </b> <a href="/user/${product.user.id}">${product.user.name}</a><br>
             <hr>
-            <div class="product-price">${product.price} <a class="cart-btn" href="#">Add to cart</a></div>
+            <#--            <div class="product-price">${product.price} <a class="cart-btn" href="#">В корзину</a></div>-->
+            <form action="/AddProductToCart" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <input type="hidden" name="product_id" value="${product.id}">
+                <button class="card_add">В корзину</button>
+            </form>
         </div>
     </div>
-    <form action="/product/delete/${product.id}" method="post">
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <input type="submit" value="Удалить товар"/>
-
-    </form>
+    <#--    <form action="/product/delete/${product.id}" method="post">-->
+    <#--        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
+    <#--        <input type="submit" value="Удалить товар"/>-->
+    <#--    </form>-->
 </main>
 </body>
 </html>
