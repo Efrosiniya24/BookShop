@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.cursach10.models.User;
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,10 +28,9 @@ public class UserService {
         user.setActive(true);
         user.getRoles().add(Role.ROLE_USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        //user.getRoles().add(Role.ROLE_ADMIN);
-//        user.getRoles().add(Role.ROLE_USER);
         log.info("Saving new User with email: {}", email);
-        userRepository.save(user);
+        if (!user.getEmail().isEmpty() && !user.getPassword().isEmpty() && !user.getName().isEmpty() && !user.getPhoneNumber().isEmpty())
+            userRepository.save(user);
         return true;
     }
 
@@ -70,21 +66,19 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User getUserByPrincipal(Principal principal) {    if (principal == null) return new User();
-        return userRepository.findByEmail(principal.getName());}
+    public User getUserByPrincipal(Principal principal) {
+        if (principal == null) return new User();
+        return userRepository.findByEmail(principal.getName());
+    }
 
-//    public User getCurrentUser(){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        User user = (User) authentication.getPrincipal();
-//        return  userRepository.findByEmail(user.getEmail());
-//    }
-public User getCurrentUser() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    Object principal = authentication.getPrincipal();
-    if (principal instanceof User)
-        return userRepository.findByEmail(((User) principal).getEmail());
-    return null;
-}
+
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof User)
+            return userRepository.findByEmail(((User) principal).getEmail());
+        return null;
+    }
 
     public User getById(Long id) {
         return userRepository.findById(id).orElse(null);

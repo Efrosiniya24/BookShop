@@ -1,9 +1,13 @@
 package com.example.cursach10.controllers;
 
+import com.example.cursach10.models.Cart;
 import com.example.cursach10.models.User;
 import com.example.cursach10.models.enums.Role;
+import com.example.cursach10.repositories.ImageRepository;
+import com.example.cursach10.services.CartService;
 import com.example.cursach10.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
@@ -43,12 +48,8 @@ public class AdminController {
 
     @PostMapping("/admin/user/edit")
     public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String, String> form, Model model) {
-        // Process form data and update user roles
         userService.changeUserRoles(user, form);
-        // Update model and redirect to a valid URL
         model.addAttribute("roles", Role.values());
-        return "redirect:/admin"; // Redirect back to admin page after successful edit
+        return "redirect:/admin";
     }
-
-
 }

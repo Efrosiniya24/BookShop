@@ -56,16 +56,16 @@
             <div class="cart-total">
                 <p>
                     <span>Общая стоимость</span>
-                    <span>${cart.totalPrice}</span>
+                    <#if cart??>
+                    <span> ${cart.totalPrice}</span>
+                    <#else>
+                    <span>  0</span>
+                    </#if>
                 </p>
                 <p>
                     <span>Количество товаров</span>
                     <span>${numberItems}</span>
                 </p>
-                <#--            <p>-->
-                <#--                <span>You Save</span>-->
-                <#--                <span>₹ 1,000</span>-->
-                <#--            </p>-->
                 <a href="#">Оформить заказ</a>
             </div>
         </div>

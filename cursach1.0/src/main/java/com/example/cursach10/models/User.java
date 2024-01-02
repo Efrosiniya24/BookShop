@@ -1,9 +1,11 @@
 package com.example.cursach10.models;
 
 import com.example.cursach10.models.enums.Role;
+import com.example.cursach10.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,6 +17,7 @@ import java.util.*;
 @Table(name = "users")
 @Data
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -57,7 +60,6 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
 
-
     //securiry
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -95,5 +97,22 @@ public class User implements UserDetails {
 
     public boolean isUser(){
         return roles.contains((Role.ROLE_USER));
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", avatar=" + avatar +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", products=" + products +
+                ", dateOfCreated=" + dateOfCreated +
+                ", cart=" + cart +
+                '}';
     }
 }

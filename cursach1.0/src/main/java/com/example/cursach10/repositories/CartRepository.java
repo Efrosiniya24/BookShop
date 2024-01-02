@@ -11,10 +11,4 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
-//    boolean findAllByNameProduct(String name);
-//      Cart findCartByUser(User user);
-//@Query(value = "SELECT * FROM cart WHERE nameProduct = ?; ", nativeQuery=true)
-
-//@Query(value = "SELECT * FROM carts WHERE user_id = ?; ", nativeQuery=true)
-//List<Cart> findAllByUser_id(int ID);
 }

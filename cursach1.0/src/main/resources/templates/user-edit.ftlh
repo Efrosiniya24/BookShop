@@ -3,6 +3,7 @@
 <head>
     <title>BOOKTREE</title>
     <link rel="icon" type="image/x-icon" href="/static/photo/tree1.ico">
+    <link rel="stylesheet" href="/static/css/edit.css">
 </head>
 <body>
 <h1>BOOKTREE</h1>
@@ -19,6 +20,5 @@
     <input type="hidden" value="${_csrf.token}" name="_csrf">
     <button type="submit">Сохранить</button>
 </form>
-
 </body>
 </html>

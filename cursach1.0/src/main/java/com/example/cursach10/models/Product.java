@@ -51,7 +51,7 @@ public class Product {
     @Column(name = "AgeRestriction")
     private String AgeRestriction;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY,
             mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     @ManyToOne
@@ -60,43 +60,14 @@ public class Product {
     private Long previewImageId;
     private LocalDateTime dateOfCreated;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.REMOVE)
     private List<Cart> carts = new ArrayList<>();
     @PrePersist
     public void init() {
         dateOfCreated = LocalDateTime.now();
     }
-
-    //    @ManyToMany
-//    @JoinTable(
-//            name = "user_products",
-//            joinColumns = @JoinColumn(name = "products_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//    private List<User> users = new ArrayList<>();
-//
-//    @ManyToMany
-//    @JoinTable(
-//            name = "product_carts",
-//            joinColumns = @JoinColumn(name = "product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "carts_id")
-//    )
-//    private List<Cart> carts = new ArrayList<>();
     public void addImageToProduct(Image image) {
         image.setProduct(this);
         images.add(image);
     }
 }
-
-//    @ManyToMany(mappedBy = "products", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-//    private Set<Cart> carts = new HashSet<>();
-
-//    public void addToCart(Cart cart) {
-//        carts.add(cart);
-//        cart.getProducts().add(this);
-//    }
-//
-//    public void removeFromCart(Cart cart) {
-//        carts.remove(cart);
-//        cart.getProducts().remove(this);
-//    }

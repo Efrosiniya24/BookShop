@@ -34,7 +34,7 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/product/allProducts">Все товары</a></li>
-            <#if user.isUser()>
+            <#if user?has_content && user.isUser()>
                 <li><a href="/profile">Профиль</a></li>
                 <li><a href="/cart">Корзина</a></li>
             <#else>
@@ -67,27 +67,23 @@
                 <div class="card_bottom">
                     <div class="card_prices">
                         <div class="card_price card_price-common">${product.price} руб.</div>
-
                         <a href="/product/${product.id}" class="card_title">${product.name}</a>
-                        <#if user.isUser()>
                     </div>
-                    <form action="/AddProductToCart" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                        <input type="hidden" name="product_id" value="${product.id}">
-                        <button class="card_add">В корзину</button>
-                    </form>
-
+                    <#if user?has_content && user.isUser()>
+                        <form action="/AddProductToCart" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <input type="hidden" name="product_id" value="${product.id}">
+                            <button class="card_add">В корзину</button>
+                        </form>
+                    </#if>
+                    <#if  user?has_content && user.isAdmin()>
+                        <form action="/product/delete" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <input type="hidden" name="product_id" value="${product.id}">
+                            <button  type="submit" class="card_add">Удалить товар</button>
+                        </form>
+                    </#if>
                 </div>
-                <#else>
-                </#if>
-                <#if user.isAdmin()>
-                    <form action="/product/delete/${product.id}" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                        input <input type="submit" value="Удалить товар"/>
-                        <button class="card_add">Удалить товар</button>
-                    </form>
-                <#else>
-                </#if>
             </div>
         <#else>
             <h3>Товаров нет</h3>

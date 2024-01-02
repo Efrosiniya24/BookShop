@@ -34,7 +34,7 @@
         </div>
         <div class="right-column">
             <div class="product-description">
-                <h1><b></b>${product.name}</h1><br>
+                <h1><b>${product.name}</b></h1><br>
                 <b>Автор: </b>${product.author}<br>
                 <b>Цена: </b><br>
                 <b>Описание: </b>${product.description}<br>
@@ -45,9 +45,8 @@
             <b>Обложка: </b>${product.cover}<br>
             <b>Вес: </b>${product.weight}<br>
             <b>Возрастное ограничение: </b>${product.ageRestriction}<br>
-            <b>Продавец: </b> <a href="/user/${product.user.id}">${product.user.name}</a><br>
+<#--            <b>Продавец: </b> <a href="/user/${product.user.id}">${product.user.name}</a><br>-->
             <hr>
-            <#--            <div class="product-price">${product.price} <a class="cart-btn" href="#">В корзину</a></div>-->
             <form action="/AddProductToCart" method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="product_id" value="${product.id}">
@@ -55,10 +54,6 @@
             </form>
         </div>
     </div>
-    <#--    <form action="/product/delete/${product.id}" method="post">-->
-    <#--        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
-    <#--        <input type="submit" value="Удалить товар"/>-->
-    <#--    </form>-->
 </main>
 </body>
 </html>

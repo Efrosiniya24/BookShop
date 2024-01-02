@@ -1,15 +1,19 @@
 package com.example.cursach10.services;
 
+import com.example.cursach10.models.Cart;
 import com.example.cursach10.models.Image;
 import com.example.cursach10.models.User;
+import com.example.cursach10.repositories.ImageRepository;
 import com.example.cursach10.repositories.ProductRepository;
 import com.example.cursach10.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.cursach10.models.Product;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -21,10 +25,13 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductService {
+    @Autowired
     private final ProductRepository productRepository;
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final UserService userService;
-//    private final CartRepository cartRepository;
+    private final ImageRepository imageRepository;
 
     public List<Product> listProduct(String name) {
         if (name != null) return productRepository.findByName(name);
@@ -33,33 +40,9 @@ public class ProductService {
     public List<Product> findAll(){
        return productRepository.findAll();
     }
-//    public Cart userCart(User user){
-//            return cartRepository.findCartByUser(user);
-//    }
 
-//    public List<Product> listProduct(String name) {
-//        List<Product> products;
-//        if (name != null) {
-//            products = productRepository.findByName(name);
-//        } else {
-//            products = productRepository.findAll();
-//        }
-//        return (List<Product>) new HashSet<>(products);
-//    }
-
-//    public Cart getCartByUser(User user) {
-//        if (user != null) return (Cart) CartRepository.findByUser(user);
-//        return (Cart) productRepository.findAll();
-//    }
-
-//    public List<Product> listProduct(String name) {
-//        return productRepository.findAll().stream()
-//                .distinct()
-//                .collect(Collectors.toList());
-//    }
     public void saveProduct(Principal principal, Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
         product.setUser(userService.getCurrentUser());
-//        product.setUser(getUserByPrincipal(principal));
         Image image1;
         Image image2;
         Image image3;
@@ -87,11 +70,6 @@ public class ProductService {
         if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
-//    public User getUserByPrincipal(Principal principal) {
-//        if (principal == null) return new User();
-//        String username = principal.getName();
-//        return userRepository.findByEmail(username);
-//    }
 
 
     private Image toImageEntity(MultipartFile file) throws IOException {
@@ -104,11 +82,22 @@ public class ProductService {
         return image;
     }
 
-    public void deleteProduct(Long id) {
+    public void deleteProduct(Long id){
         productRepository.deleteById(id);
     }
-
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    @Transactional
+    public void deleteProductWithImages(Long productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            List<Image> images = product.getImages();
+            imageRepository.deleteAll(images);
+            productRepository.delete(product);
+
+        }
+    }
+
 }

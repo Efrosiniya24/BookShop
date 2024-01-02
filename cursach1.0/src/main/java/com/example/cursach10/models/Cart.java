@@ -24,17 +24,18 @@ public class Cart {
     @Column(name = "id")
     private Long id;
 
-
-
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cart")
-//    private List<Product> products = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", totalPrice=" + totalPrice +
+                ", products=" + products +
+                ", user=" + user +
+                '}';
+    }
 
     @Column(name = "total_price")
     private double totalPrice;
-
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "product_id", referencedColumnName = "id")
-//    private Product product;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -44,13 +45,10 @@ public class Cart {
     )
     private List<Product> products = new ArrayList<>();
 
-//    @OneToOne(mappedBy = "cart")
-//    private User user;
 @OneToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "user_id")
 private User user;
     @PrePersist
     private void init() {
-        // You can initialize any additional fields here, like creation date etc.
     }
 }
